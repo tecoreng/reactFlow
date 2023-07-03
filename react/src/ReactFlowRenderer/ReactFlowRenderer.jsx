@@ -65,17 +65,19 @@ function ReactFlowRenderer() {
 
   const submitFlow = ()=>{
     let data={nodes,edges,id}
-    axios.post('http://192.168.1.68:6500/v1/flow',data).then((response)=>{
+    axios.post('http://127.0.0.1:6500/v1/flow',data).then((response)=>{
       console.log("response",response);
 
     })
   }
 
   useEffect(()=>{
-    axios.get('http://192.168.1.68:6500/v1/flow').then((response)=>{
-      setId(response.data.data._id)
-      setNodes(response.data.data.nodes)
-      setEdges(response.data.data.edges)
+    axios.get('http://127.0.0.1:6500/v1/flow').then((response)=>{
+      if(response && response.data && response.data.data && response.data.data._id){
+        setId(response.data.data._id)
+        setNodes(response.data.data.nodes)
+        setEdges(response.data.data.edges)
+      }
     })
   },[])
   return (

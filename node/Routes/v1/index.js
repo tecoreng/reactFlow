@@ -2,11 +2,11 @@ module.exports = app => {
     try {
     
         app.get('/', (req, res) => {
-            res.send("Welcome to " + process.env.PROJECT_NAME)
+            res.send("Welcome to Flow")
         });
 
         // Require Category routes
-        app.use("/" + process.env.API_VERSION_v1 + "/flow", require('./flow'));
+        app.use("/v1/flow", require('./flow'));
 
     } catch (error) {
         console.log('error: ',error);

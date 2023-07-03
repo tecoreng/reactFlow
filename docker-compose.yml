@@ -1,0 +1,19 @@
+services:
+  web:
+    build: ./react
+    container_name: react_app
+    ports:
+      - "3000:3000"
+  
+  node:
+    build: ./node
+    container_name: node_app
+    ports:
+      - "6500:6500"
+
+  mongo:
+    image: mongo
+    container_name: mongo_app
+    ports:
+      - "27017:27017"
+  

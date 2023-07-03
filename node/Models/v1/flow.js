@@ -9,21 +9,21 @@ class FlowModel {
 
     // Create new category
     async add(data) {
-        let id = data.id
         let storeObj = {
             nodes: data.nodes,
             edges: data.edges
         }
-        return await FlowSchema.findByIdAndUpdate(id, storeObj,
-            {
-                new: true
-            });
+        if(data.id){
+            return await FlowSchema.findByIdAndUpdate(data.id, storeObj);
+        } else {
+            return await FlowSchema.create(storeObj);
+        }
     }
 
     // Retrieve a single category with id
     async findOne(request_id) {
         //return await FlowSchema.findById("64a278c2b57941518c41ab1f")
-        return await FlowSchema.findById("64a2dbd45622406051856cff")
+        return await FlowSchema.findOne()
         
     }
 

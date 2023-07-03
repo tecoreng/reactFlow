@@ -3,7 +3,7 @@ require('dotenv').config();
 
 url= `mongodb://${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`
 //url = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@coding-blog-t0xf0.mongodb.net/<dbname>`
-
+url= `mongodb://mongo_app:27017/flow_app`
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
