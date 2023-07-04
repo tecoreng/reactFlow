@@ -14,6 +14,7 @@ function ReactFlowRenderer() {
   const [nodes, setNodes, onNodesChange] = useNodesState([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [tmpId, setTmpId] = useState(1)
   const onConnect = useCallback(
     (params) =>
       setEdges((eds) =>
