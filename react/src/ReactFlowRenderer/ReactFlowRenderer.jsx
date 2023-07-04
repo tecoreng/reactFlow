@@ -80,6 +80,38 @@ function ReactFlowRenderer() {
       }
     })
   },[])
+
+  const cloneFlow = () => {
+    let newNode = JSON.parse(JSON.stringify(nodes));
+    let newEdges = JSON.parse(JSON.stringify(edges));
+    const count = nodes.length
+    //let max = null;
+    //newNode.forEach(v => v.position.x > max || !max ? max = v.position.x : max)
+
+    newNode.map((node) => {
+      node.id = (Number(node.id) + count).toString()
+      node.data.label = node.data.label + "-modified";
+      node.position.x = node.position.x + (500 * tmpId)
+      node.positionAbsolute.x = node.positionAbsolute.x + (500 * tmpId)
+      return node;
+    });
+
+    newEdges.map((edge) => {
+      edge.source = (parseInt(edge.source) + count).toString()
+      edge.target = (parseInt(edge.target) + count).toString()
+      edge.id = (Math.random() * (99999 - 11111) + 11111).toString()
+      return edge
+    })
+    let finalDataNodes = [...nodes, ...newNode];
+    let finalDataEdges = [...edges, ...newEdges];
+    console.log("finalDataNodes", finalDataNodes);
+    console.log("finalDataEdges", finalDataEdges);
+    console.log("=============================================")
+    setNodes(finalDataNodes);
+    setEdges(finalDataEdges)
+    setTmpId(tmpId + 1)
+  }
+
   return (
     <div style={{ height: "100vh", margin: "10px" }}>
       <Modal
@@ -108,6 +140,10 @@ function ReactFlowRenderer() {
 
       <Button type="primary" className="button-margin" onClick={() => submitFlow()}>
         Save Data 
+      </Button>
+
+      <Button type="primary" className="button-margin" onClick={() => cloneFlow()}>
+        Clone Data
       </Button>
 
       <ReactFlow
